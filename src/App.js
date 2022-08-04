@@ -11,11 +11,11 @@ import './css/style.css';
 import Header from './Components/Header';
 
 import Footer from './Components/Footer';
-import Men from './Components/Men';
+// import Men from './Components/Men';
 import Cart from './Components/Cart';
 import Contact from './Components/Contact';
 import About from './Components/About';
-import Women from './Components/Women';
+// import Women from './Components/Women';
 import Home from './Components/Home';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Login from './Components/Login';
@@ -29,7 +29,7 @@ import Product from './Components/Product';
 import UserLogin from './Components/UserLogin';
 import Variety from './Components/Variety';
 import Register from './Components/Register';
-import Cat from './Components/Cat';
+// import Cat from './Components/Cat';
 import UProducts from './Components/UProducts';
 import SingleProduct from './Components/SingleProduct';
 
@@ -42,7 +42,7 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='products/:categoryid' element={<UProducts/>}/>
       <Route path='product/:productid' element={<SingleProduct/>}/>
-      <Route path='women' element={<Women/>}/>
+      {/* <Route path='women' element={<Women/>}/> */}
       <Route path='about' element={<About/>}/>
       <Route path='contact' element={<Contact/>}/>
       <Route path='cart' element={<Cart/>}/>
