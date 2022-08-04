@@ -1,7 +1,21 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
 const Header = () => {
+
+	let [categories, setCategories] = useState([]);
+
+	function load(){
+	  axios.post("http://localhost:8081/productcategory/list").then((res)=>{
+		setCategories(res.data.data);
+	  })
+	}  
+	
+	useEffect(()=>{
+	  load();
+	},)
+
 	const navStyle = ({isActive}) =>{
 		return{
 			color : isActive ? '#88c8bc' : '',
@@ -33,18 +47,15 @@ const Header = () => {
 						<div className="row">
 							<div className="col-sm-12 text-left menu-1">
 								<ul>
-									<li ><NavLink style={navStyle} className='nav-bar-link' to="/">Home</NavLink></li>
-									<li className="has-dropdown">
-										<NavLink className='nav-bar-link' style={navStyle} to="/men">Men</NavLink>
-										<ul className="dropdown">
-											<li><NavLink style={navStyle} className='nav-bar-link' to="/">Product Detail</NavLink></li>
-											<li><NavLink style={navStyle} className='nav-bar-link' to="/">Shopping Cart</NavLink></li>
-											<li><NavLink style={navStyle} className='nav-bar-link' to="/">Checkout</NavLink></li>
-											<li><NavLink style={navStyle} className='nav-bar-link' to="/">Order Complete</NavLink></li>
-											<li><NavLink style={navStyle} className='nav-bar-link' to="/">Wishlist</NavLink></li>
-										</ul>
-									</li>
-									<li><NavLink style={navStyle} className='nav-bar-link' to="/women">Women</NavLink></li>
+									<li><NavLink style={navStyle} className='nav-bar-link' to="/">Home</NavLink></li>
+									{
+										categories.map((category)=>{
+										return(
+												<>
+													<li><NavLink style={navStyle} className='nav-bar-link' to={"/products/" + category._id }>{ category.name }</NavLink></li>
+												</>
+										)})
+									}
 									<li><NavLink style={navStyle} className='nav-bar-link' to="/about">About</NavLink></li>
 									<li><NavLink style={navStyle} className='nav-bar-link' to="/contact">Contact</NavLink></li>
 									<li><NavLink style={navStyle} className='nav-bar-link' to="/administrator">Administrator</NavLink></li>

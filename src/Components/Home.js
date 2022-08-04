@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import { useLocation } from 'react-router';
 import Sale from './Sale';
 import Carousel from './Carousel'
 import HomeP from './HomeP'
+
 
 
 const Home = () => {

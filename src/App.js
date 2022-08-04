@@ -28,6 +28,10 @@ import Category from './Components/Category';
 import Product from './Components/Product';
 import UserLogin from './Components/UserLogin';
 import Variety from './Components/Variety';
+import Register from './Components/Register';
+import Cat from './Components/Cat';
+import UProducts from './Components/UProducts';
+import SingleProduct from './Components/SingleProduct';
 
 function App() {
   return (
@@ -36,8 +40,9 @@ function App() {
     <Header />
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='men' element={<Men   />}/>
-      <Route path='/women' element={<Women/>}/>
+      <Route path='products/:categoryid' element={<UProducts/>}/>
+      <Route path='product/:productid' element={<SingleProduct/>}/>
+      <Route path='women' element={<Women/>}/>
       <Route path='about' element={<About/>}/>
       <Route path='contact' element={<Contact/>}/>
       <Route path='cart' element={<Cart/>}/>
@@ -55,6 +60,7 @@ function App() {
         <Route path='/administrator/product/varieties/:id' element={<Variety/>}/>
        </Route>     
        <Route path='userlogin' element={<UserLogin/>}/>
+       <Route path='register' element={<Register/>}/>
     </Routes>
     
 

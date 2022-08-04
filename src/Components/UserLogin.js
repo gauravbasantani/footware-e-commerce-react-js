@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const UserLogin = () => {
     const [data, setData] = useState({
-        username : '',
+        email : '',
         password : '',
     
       })
@@ -15,7 +16,7 @@ const UserLogin = () => {
       function submit(e){
         e.preventDefault();
         axios.post("http://localhost:8081/user/login",{data:{
-          username : data.username,
+          email : data.email,
           password : data.password}
         }).then(res => {
           console.log(res.data)
@@ -34,8 +35,8 @@ const UserLogin = () => {
             <h1 className="login-title">Log in</h1>
             <form action="#!">
               <div className="form-group">
-                <label htmlFor="email">Username</label>
-                <input type="email" name="username" value={data.username} onChange={(e)=>handle(e)} id="username" className="form-control" placeholder="email@example.com"/>
+                <label htmlFor="email">email</label>
+                <input type="email" name="email" value={data.email} onChange={(e)=>handle(e)} id="email" className="form-control" placeholder="email@example.com"/>
               </div>
               <div className="form-group mb-4">
                 <label htmlFor="password">Password</label>
@@ -44,7 +45,7 @@ const UserLogin = () => {
               <input name="login" id="login" onClick={(e)=>submit(e)}  className="btn btn-block login-btn" type="button" value="Login"/>
             </form>
             <a href="#!" className="forgot-password-link">Forgot password?</a>
-            <p className="login-wrapper-footer-text">Don't have an account? <a href="#!" className="text-reset">Register here</a></p>
+            <p className="login-wrapper-footer-text">Don't have an account? <Link to="/register" className="text-reset">Register here</Link></p>
           </div>
         </div>
         <div className="col-sm-6 px-0 d-none d-sm-block">

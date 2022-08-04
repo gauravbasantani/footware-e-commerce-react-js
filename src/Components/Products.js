@@ -47,6 +47,7 @@ const Categories = () => {
           <th>Action</th>
           <th>No.</th>
           <th>Name</th>
+          <th>Image</th>
           <th>Varieties</th>
         </tr>
         {
@@ -60,6 +61,7 @@ const Categories = () => {
                 </td>
                 <td>{data._id}</td>             
                 <td>{data.name}</td>
+                <td><img src={ "http://localhost:8081/" +data.imagepath} style={{ height:'80px' }} /></td>
                 <td>
                   <Link className='btn btn-warning' to={"/administrator/product/varieties/" + data._id }>{data.varieties.length}</Link>
                 </td>
