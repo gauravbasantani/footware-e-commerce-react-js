@@ -1,9 +1,16 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../state/index";
+import { bindActionCreators } from "redux";
+import { Button } from 'react-bootstrap';
 
 
 const SingleProduct = () => {
+    const dispatch = useDispatch();
+    const actions = bindActionCreators(actionCreators, dispatch);
+
     let { productid } = useParams();
     const [product, setProduct] = useState(null);
     const [colors, setColors] = useState([]);
@@ -18,22 +25,77 @@ const SingleProduct = () => {
         quantity:1
     });
 
-    // function handleColor(e){
-      
-    // }
-    // function handleSize(e){
-    //    setSizes()
-    // }
+    function handleColorSize(e, prop){
+        const newData = {...cartproduct};
+        newData[prop] = e.target.value;
+        setCartProduct(newData);
+    }
+
+    function addToCart(e){
+        e.preventDefault();
+        if(product.varieties.length != 0){
+            if(cartproduct.color === ""){
+                alert("Please select color.");
+            }
+            else if(cartproduct.size === ""){
+                alert("Please select size.");
+            }
+            else{
+                addproducttocart(e);
+            }
+        }
+        else{
+            addproducttocart(e);
+        }
+    }
+
+    function addproducttocart(e){
+        e.preventDefault();
+        let products = new Array();
+        if(localStorage.getItem("products") != null)
+            products= JSON.parse(localStorage.getItem("products"));
+        
+        let added = false;
+        for(let i = 0; i < products.length; i++){
+            let product = products[i];
+            if(product.productid === cartproduct.productid && product.color === cartproduct.color && product.size === cartproduct.size){
+                    products[i]["quantity"] = parseInt(cartproduct["quantity"]);
+                    added = true;
+            }
+        }
+        if(!added){
+            products.push(cartproduct);
+            //dispatch(actions.addQuantity(1));
+        }
+        localStorage.setItem("products", JSON.stringify(products));
+    }
+    function setIncCount(e){
+        
+        const newData = {...cartproduct};
+        newData["quantity"] = parseInt(newData["quantity"]) + 1;
+         setCartProduct(newData);
+
+    }
+    function setDecCount(e){
+        if(cartproduct.quantity >1){
+            const newData = {...cartproduct};
+            newData["quantity"] = parseInt(newData["quantity"]) - 1;
+            setCartProduct(newData);
+        }
+         
+    }
+
+    
 
     useEffect(() => {
         axios.post("http://localhost:8081/product/get", { data: { id: productid } }).then((res) => {
             setProduct(res.data.data);
-            setPrice(product.price);
-            setMRP(product.mrp);
+            setPrice(res.data.data.price);
+            setMRP(res.data.data.mrp);
 
             let tempcolors = [];
             let tempsizes = [];
-            product.varieties.map((variety)=>{
+            res.data.data.varieties.map((variety)=>{
                 if(tempcolors.indexOf(variety.color) == -1){
                     tempcolors.push(variety.color);
                 }
@@ -76,7 +138,7 @@ const SingleProduct = () => {
                                                 sizes.map((size) => {
                                                     return (
                                                         <>
-                                                           <label className='btn'><input type="radio" name="size" value={ size }  />{ size }</label>
+                                                           <label className='btn'><input type="radio" name="size" value={ size } onChange={(e)=>handleColorSize(e, 'size')}  />{ size }</label>
                                                         </>
                                                     )
                                                 })}
@@ -87,12 +149,17 @@ const SingleProduct = () => {
                                                 colors.map((color) => {
                                                     return (
                                                         <>
-                                                           <label className='btn' style={{ backgroundColor: color }}><input type="radio" name="color"  value={ color } /></label>
+                                                           <label className='btn' style={{ backgroundColor: color }}><input type="radio" name="color"  value={ color } onChange={(e)=>handleColorSize(e, 'color')} /></label>
                                                         </>
                                                     )
                                                 })}
                                         </div>
-                                        <div className="cart mt-4 align-items-center"> <button className="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i className="fa fa-heart text-muted"></i> <i className="fa fa-share-alt text-muted"></i> </div>
+
+                                        <div>
+                                            <Button onClick={(e)=>setDecCount(e)} >-</Button>
+                                            <input type='number' min="1" value={cartproduct.quantity} />                                            <Button onClick={(e)=>setIncCount(e)} >+</Button>
+                                        </div>
+                                        <div className="cart mt-4 align-items-center"> <button onClick={(e)=>{ addToCart(e) }} className="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i className="fa fa-heart text-muted"></i> <i className="fa fa-share-alt text-muted"></i> </div>
                                     </div>
                                 </div>
                             </div>

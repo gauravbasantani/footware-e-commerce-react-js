@@ -1,9 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../state/index";
+import { bindActionCreators } from "redux";
 
 const Header = () => {
 
+  const dispatch = useDispatch();
+  const actions = bindActionCreators(actionCreators, dispatch);
+
+  let cartquantity = useSelector(state=>state.quantity);
+  if(localStorage.getItem("products") != null)
+    cartquantity = JSON.parse(localStorage.getItem("products")).length;
+
+  //dispatch(actions.setQuantity(cartquantity));
+
+	
 	let [categories, setCategories] = useState([]);
 
 	function load(){
@@ -62,7 +76,7 @@ const Header = () => {
 
 									
 									<li className='cart'><NavLink className='cart nav-bar-link' style={navStyle}  to="/userlogin">Login</NavLink></li>
-									<li className="cart"><NavLink style={navStyle} className='nav-bar-link' to="/Cart"><i className="icon-shopping-cart"></i> Cart [0]</NavLink></li>
+									<li className="cart"><NavLink style={navStyle} className='nav-bar-link' to="/Cart"><i className="icon-shopping-cart"></i> Cart [{ cartquantity }]</NavLink></li>
 								</ul>
 
 							</div>
