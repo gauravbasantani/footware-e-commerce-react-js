@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Navbar } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useSelector } from "react-redux";
@@ -7,6 +8,11 @@ import { actionCreators } from "../state/index";
 import { bindActionCreators } from "redux";
 
 const Header = () => {
+	let adminLoggedIn = false;
+	if(localStorage.getItem('usertype') != null){
+		if(localStorage.getItem('usertype') === 'admin')
+			adminLoggedIn = true;
+	}
 
   const dispatch = useDispatch();
   const actions = bindActionCreators(actionCreators, dispatch);
@@ -61,6 +67,7 @@ const Header = () => {
 						<div className="row">
 							<div className="col-sm-12 text-left menu-1">
 								<ul>
+									
 									<li><NavLink style={navStyle} className='nav-bar-link' to="/">Home</NavLink></li>
 									{
 										categories.map((category)=>{
@@ -72,7 +79,10 @@ const Header = () => {
 									}
 									<li><NavLink style={navStyle} className='nav-bar-link' to="/about">About</NavLink></li>
 									<li><NavLink style={navStyle} className='nav-bar-link' to="/contact">Contact</NavLink></li>
-									<li><NavLink style={navStyle} className='nav-bar-link' to="/administrator">Administrator</NavLink></li>
+									{
+
+									 adminLoggedIn ? <li><NavLink style={navStyle} className='nav-bar-link' to="/administrator">Administrator</NavLink></li> : ''
+									}										
 
 									
 									<li className='cart'><NavLink className='cart nav-bar-link' style={navStyle}  to="/userlogin">Login</NavLink></li>

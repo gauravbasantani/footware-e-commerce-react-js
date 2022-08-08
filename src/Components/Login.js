@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import '../css/login.css';
 import Login1 from '../images/login.jpg';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
+  let navigate = useNavigate();
   const [data, setData] = useState({
     username : '',
     password : '',
@@ -21,7 +23,17 @@ const Login = () => {
       username : data.username,
       password : data.password}
     }).then(res => {
-      console.log(res.data)
+      if(res.data.data.status === 'success')
+      {
+        localStorage.setItem("usertype" , 'admin');
+        navigate("/administrator")
+      }
+      // 
+      else{
+        alert("Invalid Credentials")
+      }
+    },(err) =>{
+      console.log("Exception" +err )
     })
     
   }
