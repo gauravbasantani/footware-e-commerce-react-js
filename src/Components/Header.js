@@ -86,7 +86,7 @@ const Header = () => {
 
 									
 									<li className='cart'><NavLink className='cart nav-bar-link' style={navStyle}  to="/userlogin">Login</NavLink></li>
-									<li className="cart"><NavLink style={navStyle} className='nav-bar-link' to="/Cart"><i className="icon-shopping-cart"></i> Cart [{ cartquantity }]</NavLink></li>
+									<li className="cart"><NavLink style={navStyle} className='nav-bar-link' to="/cart"><i className="icon-shopping-cart"></i> Cart [{ cartquantity }]</NavLink></li>
 								</ul>
 
 							</div>
