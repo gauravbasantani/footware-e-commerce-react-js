@@ -11,7 +11,9 @@ const Cart = () => {
     localProducts = JSON.parse(localStorage.getItem("products"));
   }
 
-
+function handleQauntity(e){
+  
+}
   useEffect(()=>{
     axios.post("http://localhost:8081/product/list",{data :{ pcid: ''}}).then((res)=>{
       let products = new Array();
@@ -110,7 +112,7 @@ const Cart = () => {
                 <div className="one-eight text-center">
                   <div className="display-tc">
                     <form action="#">
-                      <input type="text" name="quantity" className="form-control input-number text-center" value="1" min="1" max="100" />
+                      <input type="text" name="quantity" value={product.qauntity} onChange={(e)=>{handleQauntity(e);}} className="form-control input-number text-center" value="1" min="1" max="100" />
                     </form>
                   </div>
                 </div>

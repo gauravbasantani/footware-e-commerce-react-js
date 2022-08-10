@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { actionCreators } from "../state/index";
 import { bindActionCreators } from "redux";
 import { Button } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SingleProduct = () => {
@@ -35,10 +37,26 @@ const SingleProduct = () => {
         e.preventDefault();
         if(product.varieties.length != 0){
             if(cartproduct.color === ""){
-                alert("Please select color.");
+                toast.error('Please Select Color', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
             }
             else if(cartproduct.size === ""){
-                alert("Please select size.");
+                toast.error('Please Select Size', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
             }
             else{
                 addproducttocart(e);
@@ -138,7 +156,9 @@ const SingleProduct = () => {
                                                 sizes.map((size) => {
                                                     return (
                                                         <>
+                                                          
                                                            <label className='btn'><input type="radio" name="size" value={ size } onChange={(e)=>handleColorSize(e, 'size')}  />{ size }</label>
+                                                           <ToastContainer />
                                                         </>
                                                     )
                                                 })}
@@ -150,6 +170,7 @@ const SingleProduct = () => {
                                                     return (
                                                         <>
                                                            <label className='btn' style={{ backgroundColor: color }}><input type="radio" name="color"  value={ color } onChange={(e)=>handleColorSize(e, 'color')} /></label>
+                                                           <ToastContainer />
                                                         </>
                                                     )
                                                 })}
