@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   let navigate = useNavigate();
@@ -45,6 +46,11 @@ const Cart = () => {
   useEffect(()=>{
     calculateTotal();
   });
+  function handleDump(e){
+    e.preventDefault();    
+    localStorage.setItem("cartproducts",JSON.stringify(cartproducts));
+    navigate('/checkout');
+  }
 
   function handleQauntity(e, id) {
     e.preventDefault();
@@ -118,6 +124,7 @@ const Cart = () => {
       <div><h1>Cart Is Empty</h1></div>
     )
   }
+
   else {
     return (
       <div>
@@ -213,6 +220,9 @@ const Cart = () => {
                           </div>
                         </div>
                       </div>
+                      <div className='text-right'>
+      <button className='btn-primary' onClick={(e)=>{handleDump(e);}} className='btn btn-primary'>Proceed to Checkout</button>
+      </div>
                     </div>
                   </div>
                 </div>

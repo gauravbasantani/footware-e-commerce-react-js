@@ -32,6 +32,7 @@ import Register from './Components/Register';
 // import Cat from './Components/Cat';
 import UProducts from './Components/UProducts';
 import SingleProduct from './Components/SingleProduct';
+import CheckOut from './Components/CheckOut';
 
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
       <Route path='about' element={<About/>}/>
       <Route path='contact' element={<Contact/>}/>
       <Route path='cart' element={<Cart/>}/>
+      <Route path='checkout' element={<CheckOut/>}/>
+
       
       <Route path='login' element={<Login/>}/> 
       <Route path='administrator/' element={<Administrator/>}>

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const UserLogin = () => {
+  let navigate = useNavigate();
     const [data, setData] = useState({
         email : '',
         password : '',
     
-      })
+      });
+      
     const handle = (e) =>{
         const newData = {...data}
         newData[e.target.id] = e.target.value
@@ -19,7 +21,21 @@ const UserLogin = () => {
           email : data.email,
           password : data.password}
         }).then(res => {
-          console.log(res.data)
+          console.log(res.data);
+          if(res.data.status === "success")
+          {
+            localStorage.setItem("usertype", "user");
+            localStorage.setItem("userid", res.data.data._id);
+            localStorage.setItem("name", res.data.data.name);
+            localStorage.setItem("email", res.data.data.email);
+            localStorage.setItem("mobileno", res.data.data.mobileno);
+            if(localStorage.getItem("cartproducts") != null)
+              navigate("/checkout");
+            else
+              navigate("/user");
+          }else{
+            alert(res.data.data);
+          }
         })
         
       }

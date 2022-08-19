@@ -8,10 +8,20 @@ import { actionCreators } from "../state/index";
 import { bindActionCreators } from "redux";
 
 const Header = () => {
+	let username = "";
+	if(localStorage.getItem("name") !== null)
+		username = localStorage.getItem("name");
 	let adminLoggedIn = false;
 	if(localStorage.getItem('usertype') != null){
 		if(localStorage.getItem('usertype') === 'admin')
 			adminLoggedIn = true;
+	}
+
+	let userLoggedIn = false;
+	if(localStorage.getItem('usertype') != null){
+		if(localStorage.getItem('usertype') === 'user'){
+			userLoggedIn = true;			
+		}
 	}
 
   const dispatch = useDispatch();
@@ -84,8 +94,10 @@ const Header = () => {
 									 adminLoggedIn ? <li><NavLink style={navStyle} className='nav-bar-link' to="/administrator">Administrator</NavLink></li> : ''
 									}										
 
+									{
+										userLoggedIn ? <li className='cart'><NavLink className='cart nav-bar-link' style={navStyle}  to="/userlogin">Hello { username }</NavLink></li> : <li className='cart'><NavLink className='cart nav-bar-link' style={navStyle}  to="/userlogin">Login</NavLink></li>
+									}
 									
-									<li className='cart'><NavLink className='cart nav-bar-link' style={navStyle}  to="/userlogin">Login</NavLink></li>
 									<li className="cart"><NavLink style={navStyle} className='nav-bar-link' to="/cart"><i className="icon-shopping-cart"></i> Cart [{ cartquantity }]</NavLink></li>
 								</ul>
 

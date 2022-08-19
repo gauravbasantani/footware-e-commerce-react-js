@@ -21,7 +21,7 @@ import Card from 'react-bootstrap/Card';
 
 const UProducts = () => {
 
-  let { categoryid } = useParams();
+  let categoryid = useParams().categoryid;
   const [category, setCategory] = useState({});
   let [products, setProducts] = useState([]);
 
@@ -33,7 +33,7 @@ const UProducts = () => {
 
   useEffect(() => {
     if (categoryid !== null) {
-      axios.post('http://localhost:8081/productcategory/get/', { data: { id: categoryid } })
+      axios.post('http://localhost:8081/productcategory/get', { data: { id: categoryid } })
         .then((response) => {
           setCategory(response.data.data);
         });
@@ -41,7 +41,7 @@ const UProducts = () => {
       load();
     }
   }, [categoryid]);
-
+  if(category != null){
   return (
     <div>
       {/* <Sale/> */}
@@ -106,6 +106,12 @@ const UProducts = () => {
         </div>
     </div>
   )
+        }
+        else{
+          return(
+            <div>Loading...</div>
+          )
+        }
 }
 
 export default UProducts
