@@ -33,6 +33,7 @@ import Register from './Components/Register';
 import UProducts from './Components/UProducts';
 import SingleProduct from './Components/SingleProduct';
 import CheckOut from './Components/CheckOut';
+import SuccesOrder from './Components/SuccesOrder';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
       <Route path='contact' element={<Contact/>}/>
       <Route path='cart' element={<Cart/>}/>
       <Route path='checkout' element={<CheckOut/>}/>
+      <Route path='ordersuccess' element={<SuccesOrder/>}/>
 
       
       <Route path='login' element={<Login/>}/> 

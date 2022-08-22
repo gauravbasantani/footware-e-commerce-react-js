@@ -221,7 +221,7 @@ const Cart = () => {
                         </div>
                       </div>
                       <div className='text-right'>
-      <button className='btn-primary' onClick={(e)=>{handleDump(e);}} className='btn btn-primary'>Proceed to Checkout</button>
+      <button onClick={(e)=>{handleDump(e);}} className='btn btn-primary'>Proceed to Checkout</button>
       </div>
                     </div>
                   </div>
