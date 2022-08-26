@@ -1,12 +1,12 @@
 // import axios from 'axios';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router';
 
 const CheckOut = () => {
 
     let navigate = useNavigate();
-    let [orderid, setOrderId] = useState("");
+    let orderid = useRef("");
     let [total, setTotal] = useState(2);
 
 
@@ -21,9 +21,8 @@ const CheckOut = () => {
     "image": "https://www.abhijitgatade.com/assets/img/favicon.png",
     "order_id": "",
     "handler": function (response) {
-      alert("Success:" + orderid);
-
-      axios.post("http://localhost:8081/order/markpaid",{data: { id:orderid } }).then((res)=>{
+      console.log(orderid.current);
+      axios.post("http://localhost:8081/order/markpaid",{data: { id:orderid.current } }).then((res)=>{
         navigate("/ordersuccess");
     });
       
@@ -102,7 +101,7 @@ const CheckOut = () => {
       axios.post("http://localhost:8081/order/place",{data: data }).then((res)=>{
         console.log(res.data.data);
         alert(res.data.data._id);
-        setOrderId(res.data.data._id);
+        orderid.current = res.data.data._id;
         paymentId = '';
         error = '';
         options.amount = total * 100; //paise
@@ -117,12 +116,8 @@ const CheckOut = () => {
         );
        
       });
-    }
-    
+    }   
 
-    useEffect(()=>{
-        
-    },[])
   return (
     <div className='container'>
     <div className='row'>

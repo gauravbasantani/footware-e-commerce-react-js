@@ -41,15 +41,12 @@ const Header = () => {
 	
 	let [categories, setCategories] = useState([]);
 
-	function load(){
-	  axios.post("http://localhost:8081/productcategory/list").then((res)=>{
-		setCategories(res.data.data);
-	  })
-	}  
 	
 	useEffect(()=>{
-	  load();
-	},)
+	    axios.post("http://localhost:8081/productcategory/list").then((res)=>{
+		setCategories(res.data.data);
+	  })
+	},[]);
 
 	const navStyle = ({isActive}) =>{
 		return{
@@ -69,6 +66,7 @@ const Header = () => {
 						<div className="row">
 							<div className="col-sm-7 col-md-9">
 								<div id="colorlib-logo"><a to="index.html">Footwear</a></div>
+								<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle colorlib-nav-white"><i></i></a>
 							</div>
 							<div className="col-sm-5 col-md-3">
 							<form action="#" className="search-wrap">
