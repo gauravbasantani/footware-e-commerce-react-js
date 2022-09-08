@@ -27,7 +27,7 @@ const Variety = () => {
             price: 0,
 
         });
-        axios.post("http://localhost:8081/product/get", { data: { id: id } }).then((res) => {
+        axios.post("https://react-ecomm-mern.herokuapp.com/product/get", { data: { id: id } }).then((res) => {
             setVarieties(res.data.data.varieties);
             setProductName(res.data.data.name);
             console.log(varieties);
@@ -38,7 +38,7 @@ const Variety = () => {
     function deleteProductVariety(e, dvariety) {
         e.preventDefault();
         if(window.confirm("Sure to delete?")){
-            axios.post("http://localhost:8081/product/deletevariety", { data: { id: id, variety: dvariety } }).then((res) => {
+            axios.post("https://react-ecomm-mern.herokuapp.com/product/deletevariety", { data: { id: id, variety: dvariety } }).then((res) => {
                 load();
             })
         }
@@ -46,7 +46,7 @@ const Variety = () => {
 
     function saveVariety(e) {
         e.preventDefault();
-        axios.post("http://localhost:8081/product/savevariety", { data: { id: id, variety: variety } }).then((res) => {
+        axios.post("https://react-ecomm-mern.herokuapp.com/product/savevariety", { data: { id: id, variety: variety } }).then((res) => {
             load();
         });
     }

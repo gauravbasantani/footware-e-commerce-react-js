@@ -26,14 +26,14 @@ const UProducts = () => {
   let [products, setProducts] = useState([]);
 
   function load() {
-    axios.post("http://localhost:8081/product/list", { data: { pcid: categoryid } }).then((res) => {
+    axios.post("https://react-ecomm-mern.herokuapp.com/product/list", { data: { pcid: categoryid } }).then((res) => {
       setProducts(res.data.data);
     })
   }
 
   useEffect(() => {
     if (categoryid !== null) {
-      axios.post('http://localhost:8081/productcategory/get', { data: { id: categoryid } })
+      axios.post('https://react-ecomm-mern.herokuapp.com/productcategory/get', { data: { id: categoryid } })
         .then((response) => {
           setCategory(response.data.data);
         });
@@ -65,7 +65,7 @@ const UProducts = () => {
                   {/* <div className="col-lg-6 py-2 text-center">
                 <div className="product-entry border">
                   <Link to='' href="" className="prod-img">
-                    <img src={"http://localhost:8081/" + e.imagepath} className="img-fluid" alt="Free html5 bootstrap 4 template" />
+                    <img src={"https://react-ecomm-mern.herokuapp.com/" + e.imagepath} className="img-fluid" alt="Free html5 bootstrap 4 template" />
                   </Link>
                   <div className="desc">
                     <h2><a href="">{e.name}</a></h2>
@@ -84,7 +84,7 @@ const UProducts = () => {
                   
                     <div className='col-lg-3 m-2'>
                       <Card className='m-2 py-2 img-fluid' style={{ width: '18rem',  }}>
-                        <Card.Img variant="top" style={{height:'250px'}} src={"http://localhost:8081/" + e.imagepath} />
+                        <Card.Img variant="top" style={{height:'250px'}} src={"https://react-ecomm-mern.herokuapp.com/" + e.imagepath} />
                         <Card.Body>
                           <Card.Title>{e.name}</Card.Title>
                           <Card.Text>

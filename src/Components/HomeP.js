@@ -24,7 +24,7 @@ const HomeP = (props) => {
 	)
 
 	useEffect(() => {
-		axios.post("http://localhost:8081/productcategory/list", { data: { pcid: "" } }).then((res) => {
+		axios.post("https://react-ecomm-mern.herokuapp.com/productcategory/list", { data: { pcid: "" } }).then((res) => {
 			setData(res.data.data);
 		})
 	}, [])
@@ -48,8 +48,8 @@ const HomeP = (props) => {
 								return (
 									<div className="col-lg-6 py-2 text-center">
 										<div className="product-entry border">
-											<Link to='' href="" className="prod-img">
-												<img src={"http://localhost:8081/" + e.imagepath} className="img-fluid" alt="Free html5 bootstrap 4 template" />
+											<Link to={"/products/"+e._id} href="" className="prod-img">
+												<img src={"https://react-ecomm-mern.herokuapp.com/" + e.imagepath} className="img-fluid" alt="Free html5 bootstrap 4 template" />
 											</Link>
 											<div className="desc">
 												<h2><a href="">{e.name}</a></h2>

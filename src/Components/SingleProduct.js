@@ -106,7 +106,7 @@ const SingleProduct = () => {
     
 
     useEffect(() => {
-        axios.post("http://localhost:8081/product/get", { data: { id: productid } }).then((res) => {
+        axios.post("https://react-ecomm-mern.herokuapp.com/product/get", { data: { id: productid } }).then((res) => {
             setProduct(res.data.data);
             setPrice(res.data.data.price);
             setMRP(res.data.data.mrp);
@@ -137,7 +137,7 @@ const SingleProduct = () => {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="images p-3">
-                                        <div className="text-center p-4"> <img id="main-image" src={"http://localhost:8081/" + product.imagepath} width="250" /> </div>
+                                        <div className="text-center p-4"> <img id="main-image" src={"https://react-ecomm-mern.herokuapp.com/" + product.imagepath} width="250" /> </div>
 
                                     </div>
                                 </div>

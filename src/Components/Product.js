@@ -24,7 +24,7 @@ const Product = () => {
         // alert(id)
         if(id !== null)
         {
-          axios.post('http://localhost:8081/product/get/', {data:{id:id}})
+          axios.post('https://react-ecomm-mern.herokuapp.com/product/get/', {data:{id:id}})
             .then((response) => {
               const newData = {...data};
               newData["id"] = response.data.data._id;
@@ -46,7 +46,7 @@ const Product = () => {
     let [categories, setCategories] = useState([]);
 
     useEffect(()=>{
-      axios.post("http://localhost:8081/productcategory/list").then((res)=>{
+      axios.post("https://react-ecomm-mern.herokuapp.com/productcategory/list").then((res)=>{
         setCategories(res.data.data);
       })
     }, [])
@@ -73,14 +73,14 @@ const Product = () => {
     }
     function submit(e){
         e.preventDefault();
-        axios.post("http://localhost:8081/product/save",{data:data}).then(res=>{
+        axios.post("https://react-ecomm-mern.herokuapp.com/product/save",{data:data}).then(res=>{
             navigate('/administrator/products');
         })
     }
     // function submit(e){
     //     e.preventDefault();
     //     console.log(data);
-    //     axios.post("http://localhost:8081/product/save",{data:data}).then(res=>{
+    //     axios.post("https://react-ecomm-mern.herokuapp.com/product/save",{data:data}).then(res=>{
     //         console.log(res.data);
     //         //navigate('/administrator/products');
     //     })

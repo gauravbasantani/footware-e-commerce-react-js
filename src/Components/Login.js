@@ -19,7 +19,7 @@ const Login = () => {
   }
   function submit(e){
     e.preventDefault();
-    axios.post("http://localhost:8081/admin/login",{data:{
+    axios.post("https://react-ecomm-mern.herokuapp.com/admin/login",{data:{
       username : data.username,
       password : data.password}
     }).then(res => {

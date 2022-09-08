@@ -10,7 +10,7 @@ const Cart = () => {
   let [cartemtpy, setcartEmpty] = useState(false);
 
   useEffect(() => {
-    axios.post("http://localhost:8081/product/list", { data: { pcid: '' } }).then((res) => {
+    axios.post("https://react-ecomm-mern.herokuapp.com/product/list", { data: { pcid: '' } }).then((res) => {
       let products = new Array();
       let count = 1;
       let localProducts = new Array();

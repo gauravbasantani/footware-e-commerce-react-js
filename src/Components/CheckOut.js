@@ -16,13 +16,13 @@ const CheckOut = () => {
     let options = {
     "key": "rzp_live_Ay9af2dQeUH8A6",
     "amount": "200",
-    "name": "Abhijit Gatade",
+    "name": "Gaurav Basantani",
     "description": "Web Development",
-    "image": "https://www.abhijitgatade.com/assets/img/favicon.png",
+    "image": "https://media-exp1.licdn.com/dms/image/C4D03AQG3nqW9a90oog/profile-displayphoto-shrink_200_200/0/1658646650977?e=2147483647&v=beta&t=pHn-bCOni3ps4EQSVMo-z2n7qleEM292NnDJT0qK0rY",
     "order_id": "",
     "handler": function (response) {
       console.log(orderid.current);
-      axios.post("http://localhost:8081/order/markpaid",{data: { id:orderid.current } }).then((res)=>{
+      axios.post("https://react-ecomm-mern.herokuapp.com/order/markpaid",{data: { id:orderid.current } }).then((res)=>{
         navigate("/ordersuccess");
     });
       
@@ -84,6 +84,7 @@ const CheckOut = () => {
       let data = {...checkOuts};
       data.userid = localStorage.getItem("userid");
       let products = new Array();
+      let mytotal = 0;
       for(let i = 0; i < cartproducts.length; i++)
       {
         let product = {
@@ -96,15 +97,17 @@ const CheckOut = () => {
           total:cartproducts[i].quantity * cartproducts[i].price
         }
         products.push(product);
+        mytotal += product.total;
       }
+      setTotal(mytotal);
       data.products = products;
-      axios.post("http://localhost:8081/order/place",{data: data }).then((res)=>{
+      axios.post("https://react-ecomm-mern.herokuapp.com/order/place",{data: data }).then((res)=>{
         console.log(res.data.data);
         alert(res.data.data._id);
         orderid.current = res.data.data._id;
         paymentId = '';
         error = '';
-        options.amount = total * 100; //paise
+        options.amount = mytotal * 100; //paise
         options.prefill.name = localStorage.getItem("name");
         options.prefill.email = localStorage.getItem("email");
         options.prefill.contact = "+91" + localStorage.getItem("mobileno");
@@ -119,9 +122,9 @@ const CheckOut = () => {
     }   
 
   return (
-    <div className='container'>
+    <div className='container mt-3' >
     <div className='row'>
-    <div className='col-md-8'>
+    <div className='col-lg-6'>
        <label for="address">Address</label>
        <input type="text" className="form-control"  onChange={(e)=>handle(e)} id="address" aria-describedby="emailHelp" placeholder="Enter Address" />
        <label for="city">City</label>
@@ -131,43 +134,57 @@ const CheckOut = () => {
        <label for="pincode">Pincode</label>
        <input type="text" className="form-control"  onChange={(e)=>handle(e)} id="pincode" aria-describedby="emailHelp" placeholder="Enter Pincode" />       
     </div>
-    <div className='col-md-4'>
+    <div className='col-lg-6'>
+    <table className='table table-bordered table-stripped'>
+      <tr>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Qauntity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+
+    
     {
                   cartproducts.map((product) => {
                     return (
                       <>
-                        <div className="product-cart d-flex" key={product.id}>
-                          <div className="one-forth">
-                            <div className="product-img">
-                            </div>
-                            <div className="display-tc">
-                              <h3>{product.name } { product.color == "" ? "" : <span style={{ backgroundColor : 'red', padding: '10px' }}> { product.color }</span>} 
-                              { product.size == "" ? "" : <span style={{ padding: '10px' }}> { product.size }</span>} 
-                              </h3>
-                            </div>
-                          </div>
-                          <div className="one-eight text-center">
-                            <div className="display-tc">
-                              <span className="price">{parseFloat(product.price).toFixed(2)}</span>
-                            </div>
-                          </div>
-                          <div className="one-eight text-center">
-                            <div className="display-tc">
+                      <tr>
+                      
+                            
+                             <td> <h3>{product.name }</h3></td>
+                             <td> { product.color == "" ? "" : <span style={{ backgroundColor : 'red', padding: '10px' }}> { product.color }</span>} </td>
+                              <td><h3>{ product.size == "" ? "" : <span style={{ padding: '10px' }}> { product.size }</span>}</h3> </td>
+                            
+                            
+                         
+                              <td>
                               {product.quantity}
-                            </div>
-                          </div>
-                          <div className="one-eight text-center">
-                            <div className="display-tc">
+                              </td>
+                      
+                        
+                          
+                              <td>
+                              <span className="price">{parseFloat(product.price).toFixed(2)}</span>
+                              </td>
+                           
+                        
+                              <td>
                               <span className="price">{(product.price * product.quantity).toFixed(2)}</span>
-                            </div>
-                          </div>
-                        </div>
+                              </td>
+                           
+                      
+                        </tr>
                       </>
                     )
                   })
                 }
+                </table>
     </div>
-    <button onClick={(e)=>{ placeorder(e); }}>Place Order</button>
+    </div>
+    <div className='d-flex flex-row-reverse' style={{width:"80px"}}>
+    <button  onClick={(e)=>{ placeorder(e); }}>Place Order</button>
     </div>
     </div>
   )

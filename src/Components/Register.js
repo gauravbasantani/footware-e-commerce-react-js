@@ -15,7 +15,7 @@ const Register = () => {
       }
       function submit(e){
         e.preventDefault();
-        axios.post("http://localhost:8081/user/register",{data:{
+        axios.post("https://react-ecomm-mern.herokuapp.com/user/register",{data:{
             name : data.name,
             email : data.email,
             mobileno :data.mobileno,
