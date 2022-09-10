@@ -45,19 +45,15 @@ const UProducts = () => {
   return (
     <div>
       {/* <Sale/> */}
-      <div className="breadcrumbs-two ">
+     
         <div className="container">
-          <div className="row">
-            <div className="col">
-              <div className="breadcrumbs-img" style={{ backgroundImage: `url(${imgc})` }}>
-                <h2>{category.name}</h2>
-              </div>
-            </div>
-          </div>
+          
+                <h2 className='text-center mt-4'>{category.name}</h2>
+              
         </div>
-      </div>
+     
       <div className="container ">
-        <div className="row py-2 mx-auto ">
+        <div className="row mx-auto mt-2">
           {
             products.map((e) => {
               return (
@@ -82,7 +78,7 @@ const UProducts = () => {
   </div>
 </div> */}
                   
-                    <div className='col-lg-3 m-2'>
+                    <div className='col-lg-4'>
                       <Card className='m-2 py-2 img-fluid' style={{ width: '18rem',  }}>
                         <Card.Img variant="top" style={{height:'250px'}} src={"https://react-ecomm-mern.herokuapp.com/" + e.imagepath} />
                         <Card.Body>
@@ -93,7 +89,7 @@ const UProducts = () => {
                           <Card.Text>
                            &#8377; {e.price}
                           </Card.Text>
-                          <Link variant="primary" to={"/product/"+e._id }>View More</Link>
+                          <Link className='btn btn-secondary' variant="primary" to={"/product/"+e._id }>View More</Link>
                         </Card.Body>
                       </Card>
                     </div>

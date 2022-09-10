@@ -35,8 +35,8 @@ const HomeP = (props) => {
 
 
 			<div className="colorlib-product">
-				<div className="container">
-					<div className="row m-2 mb-2 py-2">
+				<div className="container" >
+					<div className="row m-2 mb-2 py-2" >
 						<div className="mx-auto offset-sm-2 text-center colorlib-heading">
 							<h2>{props.title}</h2>
 						</div>
@@ -46,9 +46,9 @@ const HomeP = (props) => {
 							data.map((e) => {
 
 								return (
-									<div className="col-lg-6 py-2 text-center">
-										<div className="product-entry border">
-											<Link to={"/products/"+e._id} href="" className="prod-img">
+									<div className="col-lg-6 py-2 text-center" >
+										<div className="product-entry border " >
+											<Link to={"/products/"+e._id} href=""  className="prod-img">
 												<img src={"https://react-ecomm-mern.herokuapp.com/" + e.imagepath} className="img-fluid" alt="Free html5 bootstrap 4 template" />
 											</Link>
 											<div className="desc">

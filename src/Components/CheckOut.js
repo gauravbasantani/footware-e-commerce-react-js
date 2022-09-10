@@ -122,6 +122,7 @@ const CheckOut = () => {
     }   
 
   return (
+    <div>
     <div className='container mt-3' >
     <div className='row'>
     <div className='col-lg-6'>
@@ -135,9 +136,11 @@ const CheckOut = () => {
        <input type="text" className="form-control"  onChange={(e)=>handle(e)} id="pincode" aria-describedby="emailHelp" placeholder="Enter Pincode" />       
     </div>
     <div className='col-lg-6'>
-    <table className='table table-bordered table-stripped'>
+      <div className='mr-5'>
+    <table className='table table-bordered table-stripped '>
       <tr>
         <th>Name</th>
+        <th>Image</th>
         <th>Color</th>
         <th>Size</th>
         <th>Qauntity</th>
@@ -145,47 +148,49 @@ const CheckOut = () => {
         <th>Total</th>
       </tr>
 
-    
     {
                   cartproducts.map((product) => {
                     return (
                       <>
                       <tr>
                       
-                            
-                             <td> <h3>{product.name }</h3></td>
-                             <td> { product.color == "" ? "" : <span style={{ backgroundColor : 'red', padding: '10px' }}> { product.color }</span>} </td>
-                              <td><h3>{ product.size == "" ? "" : <span style={{ padding: '10px' }}> { product.size }</span>}</h3> </td>
-                            
-                            
-                         
-                              <td>
+                             <td> <h5>{product.name }</h5></td>
+                             <td><img src={ "https://react-ecomm-mern.herokuapp.com/" + product.imagepath} style={{height:"70px"}}/></td>
+                             <td> { product.color == "" ? "" : <span style={{ backgroundColor : product.color,  }}> { product.color }</span>} </td>
+                              <td><h5>{ product.size == "" ? "" : <span > { product.size }</span>}</h5> </td>
+                                                          <td>
                               {product.quantity}
                               </td>
-                      
-                        
-                          
-                              <td>
+                                                    <td>
                               <span className="price">{parseFloat(product.price).toFixed(2)}</span>
                               </td>
                            
-                        
                               <td>
                               <span className="price">{(product.price * product.quantity).toFixed(2)}</span>
                               </td>
                            
-                      
                         </tr>
                       </>
                     )
                   })
                 }
                 </table>
+                </div>
     </div>
     </div>
-    <div className='d-flex flex-row-reverse' style={{width:"80px"}}>
+    <div className='row'>
+      <div className='col-md-11'>
+
+      </div>
+      <div className='col-md-1'>
+
+    <div className=' mt-3' style={{width:"120px"}}>
     <button  onClick={(e)=>{ placeorder(e); }}>Place Order</button>
     </div>
+    </div>
+      </div>
+    </div>
+    
     </div>
   )
 }

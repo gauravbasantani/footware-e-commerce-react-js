@@ -66,14 +66,14 @@ const Header = () => {
               <div className="container">
                 <div className="row">
                   <div className="col-sm-7 col-md-9">
-                    <div id="colorlib-logo">
+                    <div className='mt-4' id="colorlib-logo">
                       <a to="/">Gaurav-Commerce</a>
                     </div>
-                    <button
-                      onClick={(e)=>{ setShowMenu(!showmenu); }}
-                      className="js-colorlib-nav-toggle colorlib-nav-toggle colorlib-nav-white"
+                    <button 
+                      onClick={(e)=>{ setShowMenu(!showmenu); }} 
+                      className="js-colorlib-nav-toggle colorlib-nav-toggle colorlib-nav-white pb-2 p-1 mr-3  mb-5 "
                     >
-                      <i></i>
+                      <i className='p-auto'></i>
                     </button>
                   </div>
 				  {showmenu === true &&
@@ -172,7 +172,7 @@ const Header = () => {
                   </div>
 					}
                   <div className="col-sm-5 col-md-3">
-                    <form action="#" className="search-wrap">
+                    <form action="#" className="search-wrap mt-5">
                       <div className="form-group">
                         <input
                           type="search"
@@ -183,7 +183,7 @@ const Header = () => {
                           className="btn btn-primary submit-search text-center"
                           type="submit"
                         >
-                          <i className="icon-search"></i>
+                          <i style={{marginTop:"5px"}} className="icon-search"></i>
                         </button>
                       </div>
                     </form>

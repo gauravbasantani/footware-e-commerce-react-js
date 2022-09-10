@@ -82,8 +82,29 @@ const SingleProduct = () => {
             }
         }
         if(!added){
+            toast.success('Product added to Cart', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
             products.push(cartproduct);
+            
             //dispatch(actions.addQuantity(1));
+        }
+        else{
+            toast.warning('Product already added to Cart', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }
         localStorage.setItem("products", JSON.stringify(products));
     }
@@ -130,6 +151,17 @@ const SingleProduct = () => {
     if(product != null){
     return (
         <div>
+            <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+/>
             <div className="container mt-5 mb-5">
                 <div className="row d-flex justify-content-center">
                     <div className="col-md-10">
@@ -150,35 +182,35 @@ const SingleProduct = () => {
                                             </div>
                                         </div>
                                         <p className="about">{product.specification}</p>
-                                        <div className="sizes mt-5">
-                                            <h6 className="text-uppercase">Size { cartproduct.size } </h6>
+                                        <div className="sizes mt-3">
+                                            <h6 className="text-uppercase mt-2">Size  </h6>
                                             {
                                                 sizes.map((size) => {
                                                     return (
                                                         <>
                                                           
-                                                           <label className='btn'><input type="radio" name="size" value={ size } onChange={(e)=>handleColorSize(e, 'size')}  />{ size }</label>
+                                                           <label style={{border:"2px solid black"}} className='btn'><input type="radio" name="size" value={ size } onChange={(e)=>handleColorSize(e, 'size')}  />{ size }</label>
                                                            <ToastContainer />
                                                         </>
                                                     )
                                                 })}
                                         </div>
-                                        <div className="sizes mt-5">
-                                            <h6 className="text-uppercase">Color { cartproduct.color } </h6> 
+                                        <div className="sizes">
+                                            <h6 className="text-uppercase mt-2">Color </h6> 
                                             {
                                                 colors.map((color) => {
                                                     return (
                                                         <>
-                                                           <label className='btn' style={{ backgroundColor: color }}><input type="radio" name="color"  value={ color } onChange={(e)=>handleColorSize(e, 'color')} /></label>
+                                                           <label className='btn' style={{ backgroundColor: color,width:"70px" }}><input  type="radio" name="color"  value={ color } onChange={(e)=>handleColorSize(e, 'color')} /></label>
                                                            <ToastContainer />
                                                         </>
                                                     )
                                                 })}
                                         </div>
 
-                                        <div>
-                                            <Button onClick={(e)=>setDecCount(e)} >-</Button>
-                                            <input type='number' min="1" value={cartproduct.quantity} />                                            <Button onClick={(e)=>setIncCount(e)} >+</Button>
+                                        <div className='mt-2'>
+                                            <Button className='mr-2' onClick={(e)=>setDecCount(e)} >-</Button>
+                                            <input style={{width:"40px",textAlign:"center"}} type='number' min="1" value={cartproduct.quantity} />                                            <Button className='ml-2' onClick={(e)=>setIncCount(e)} >+</Button>
                                         </div>
                                         <div className="cart mt-4 align-items-center"> <button onClick={(e)=>{ addToCart(e) }} className="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i className="fa fa-heart text-muted"></i> <i className="fa fa-share-alt text-muted"></i> </div>
                                     </div>

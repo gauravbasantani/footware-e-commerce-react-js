@@ -47,9 +47,7 @@ const Login = () => {
         <div className="container-fluid">
       <div className="row">
         <div className="col-sm-6 login-section-wrapper">
-          <div className="brand-wrapper">
-            <img src="assets/images/logo.svg" alt="logo" className="logo"/>
-          </div>
+          
           <div className="login-wrapper my-auto">
             <h1 className="login-title">Log in</h1>
             <form action="#!">
@@ -61,7 +59,7 @@ const Login = () => {
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" value={data.password} onChange={(e)=>handle(e)} id="password" className="form-control" placeholder="enter your passsword"/>
               </div>
-              <input name="login" id="login" onClick={(e)=>submit(e)}  className="btn btn-block login-btn" type="button" value="Login"/>
+              <button name="login" id="login" onClick={(e)=>submit(e)} style={{backgroundColor:'#88c8bc'}} className="btn btn-block " type="button" value="Login">Login</button>
             </form>
             <a href="#!" className="forgot-password-link">Forgot password?</a>
             <p className="login-wrapper-footer-text">Don't have an account? <a href="#!" className="text-reset">Register here</a></p>

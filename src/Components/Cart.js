@@ -130,24 +130,17 @@ const Cart = () => {
       <div>
         <div className="colorlib-product">
           <div className="container">
-            <div className="row row-pb-lg">
-              <div className="col-md-10 offset-md-1">
-                <div className="process-wrap">
-                  <div className="process text-center active">
-                    <p><span>01</span></p>
-                    <h3>Shopping Cart</h3>
-                  </div>
-                  <div className="process text-center">
-                    <p><span>02</span></p>
-                    <h3>Checkout</h3>
-                  </div>
-                  <div className="process text-center">
-                    <p><span>03</span></p>
-                    <h3>Order Complete</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+             
+               
+                  
+                  
+                    <h3 className= ' mb-3 text-center mx-auto h2'>Shopping Cart</h3>
+                  
+                  
+                  
+                
+              
             <div className="row row-pb-lg">
               <div className="col-md-12">
                 <div className="product-name d-flex">
@@ -155,8 +148,18 @@ const Cart = () => {
                     <span>Product Details</span>
                   </div>
                   <div className="one-eight text-center">
+                    <span>Image</span>
+                  </div>
+                  <div className="one-eight text-center">
+                    <span>Colour</span>
+                  </div>
+                  <div className="one-eight text-center">
+                    <span>Size</span>
+                  </div>
+                  <div className="one-eight text-center">
                     <span>Price</span>
                   </div>
+
                   <div className="one-eight text-center">
                     <span>Quantity</span>
                   </div>
@@ -173,13 +176,25 @@ const Cart = () => {
                       <>
                         <div className="product-cart d-flex" key={product.id}>
                           <div className="one-forth">
-                            <div className="product-img">
-                            </div>
+                            
                             <div className="display-tc">
-                              <h3>{product.name } { product.color == "" ? "" : <span style={{ backgroundColor : 'red', padding: '10px' }}> { product.color }</span>} 
-                              { product.size == "" ? "" : <span style={{ padding: '10px' }}> { product.size }</span>} 
+                              <h3>{product.name } 
+                             
                               </h3>
+
                             </div>
+                          </div>
+                          <div className="one-eight text-center">
+                            <div className="display-tc">
+                            <img src={ "https://react-ecomm-mern.herokuapp.com/" + product.imagepath} style={{height:'70px'}} />     </div>
+                          </div>
+                          <div className="one-eight text-center">
+                            <div className="display-tc">
+                            { product.color == "" ? "" : <span style={{ backgroundColor : product.color, padding: '10px' }}> { product.color }</span>}                             </div>
+                          </div>
+                          <div className="one-eight text-center">
+                            <div className="display-tc">
+                            { product.size == "" ? "" : <span style={{ padding: '10px' }}> { product.size }</span>}                            </div>
                           </div>
                           <div className="one-eight text-center">
                             <div className="display-tc">
@@ -198,7 +213,7 @@ const Cart = () => {
                           </div>
                           <div className="one-eight text-center">
                             <div className="display-tc">
-                              <button onClick={(e) => { removeProduct(e, product.id) }} className="closed"></button>
+                              <button onClick={(e) => { removeProduct(e, product.id) }} style={{border:"2px solid black",}}  className=" ">X</button>
                             </div>
                           </div>
                         </div>
@@ -221,7 +236,7 @@ const Cart = () => {
                         </div>
                       </div>
                       <div className='text-right'>
-      <button onClick={(e)=>{handleDump(e);}} className='btn btn-primary'>Proceed to Checkout</button>
+      <button onClick={(e)=>{handleDump(e);}} className='btn btn-primary mt-3'>Proceed to Checkout</button>
       </div>
                     </div>
                   </div>
