@@ -17,7 +17,7 @@ const UserLogin = () => {
       }
       function submit(e){
         e.preventDefault();
-        axios.post("https://react-ecomm-mern.herokuapp.com/user/login",{data:{
+        axios.post("https://node-gaurav-ecommerce.onrender.com/user/login",{data:{
           email : data.email,
           password : data.password}
         }).then(res => {

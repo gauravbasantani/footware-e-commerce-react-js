@@ -44,7 +44,7 @@ const Header = () => {
 
 	
 	useEffect(()=>{
-	    axios.post("https://react-ecomm-mern.herokuapp.com/productcategory/list").then((res)=>{
+	    axios.post("https://node-gaurav-ecommerce.onrender.com/productcategory/list").then((res)=>{
 		setCategories(res.data.data);
 	  })
 	},[]);

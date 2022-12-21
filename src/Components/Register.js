@@ -15,7 +15,7 @@ const Register = () => {
       }
       function submit(e){
         e.preventDefault();
-        axios.post("https://react-ecomm-mern.herokuapp.com/user/register",{data:{
+        axios.post("https://node-gaurav-ecommerce.onrender.com/user/register",{data:{
             name : data.name,
             email : data.email,
             mobileno :data.mobileno,

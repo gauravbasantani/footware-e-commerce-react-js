@@ -18,11 +18,11 @@ const CheckOut = () => {
     "amount": "200",
     "name": "Gaurav Basantani",
     "description": "Web Development",
-    "image": "https://media-exp1.licdn.com/dms/image/C4D03AQG3nqW9a90oog/profile-displayphoto-shrink_200_200/0/1658646650977?e=2147483647&v=beta&t=pHn-bCOni3ps4EQSVMo-z2n7qleEM292NnDJT0qK0rY",
+    "image": "https://media.licdn.com/dms/image/D5603AQGJ_IrGUSfTPg/profile-displayphoto-shrink_800_800/0/1670641555024?e=2147483647&v=beta&t=vBD58HBYTFIZvLnhh_nq-Thy_r8xY2f3N-U0pY1D-LM",
     "order_id": "",
     "handler": function (response) {
       console.log(orderid.current);
-      axios.post("https://react-ecomm-mern.herokuapp.com/order/markpaid",{data: { id:orderid.current } }).then((res)=>{
+      axios.post("https://node-gaurav-ecommerce.onrender.com/order/markpaid",{data: { id:orderid.current } }).then((res)=>{
         navigate("/ordersuccess");
     });
       
@@ -101,7 +101,7 @@ const CheckOut = () => {
       }
       setTotal(mytotal);
       data.products = products;
-      axios.post("https://react-ecomm-mern.herokuapp.com/order/place",{data: data }).then((res)=>{
+      axios.post("https://node-gaurav-ecommerce.onrender.com/order/place",{data: data }).then((res)=>{
         console.log(res.data.data);
         alert(res.data.data._id);
         orderid.current = res.data.data._id;
@@ -155,7 +155,7 @@ const CheckOut = () => {
                       <tr>
                       
                              <td> <h5>{product.name }</h5></td>
-                             <td><img src={ "https://react-ecomm-mern.herokuapp.com/" + product.imagepath} style={{height:"70px"}}/></td>
+                             <td><img src={ "https://node-gaurav-ecommerce.onrender.com/" + product.imagepath} style={{height:"70px"}}/></td>
                              <td> { product.color == "" ? "" : <span style={{ backgroundColor : product.color,  }}> { product.color }</span>} </td>
                               <td><h5>{ product.size == "" ? "" : <span > { product.size }</span>}</h5> </td>
                                                           <td>

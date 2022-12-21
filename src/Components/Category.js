@@ -21,7 +21,7 @@ const Category = () => {
     useEffect(()=>{
         if(id !== null)
         {
-          axios.post('https://react-ecomm-mern.herokuapp.com/productcategory/get/', {data:{id:id}})
+          axios.post('https://node-gaurav-ecommerce.onrender.com/productcategory/get/', {data:{id:id}})
             .then((response) => {
               const newData = {...data};
               newData["id"] = response.data.data._id;
@@ -57,7 +57,7 @@ const Category = () => {
     }
     function submit(e){
         e.preventDefault();
-        axios.post("https://react-ecomm-mern.herokuapp.com/productcategory/save",{data:{
+        axios.post("https://node-gaurav-ecommerce.onrender.com/productcategory/save",{data:{
             id: data.id === null ? "" : data.id,
             name: data.name,
             image : data.image,

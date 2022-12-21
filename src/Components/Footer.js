@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     let path = useLocation();
@@ -49,7 +50,8 @@ const Footer = () => {
                                 <li><a href="#">Categories</a></li>
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Contact</a></li>
-                                <li><a href="#">Login</a></li>
+                                <li><Link to="/userlogin">Login</Link></li>
+                                <li><Link to="/login">Admin Login</Link></li>
                             </ul>
                         </div>
 

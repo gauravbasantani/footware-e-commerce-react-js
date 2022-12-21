@@ -6,7 +6,7 @@ const Categories = () => {
   let [datas, setData] = useState([]);
 
   function load(){
-    axios.post("https://react-ecomm-mern.herokuapp.com/productcategory/list").then((res)=>{
+    axios.post("https://node-gaurav-ecommerce.onrender.com/productcategory/list").then((res)=>{
       setData(res.data.data);
     })
   }
@@ -24,7 +24,7 @@ const Categories = () => {
 
   function deletecategory(e, id){
     e.preventDefault();
-    axios.post("https://react-ecomm-mern.herokuapp.com/productcategory/delete", {data:{id:id}}).then((res)=>{
+    axios.post("https://node-gaurav-ecommerce.onrender.com/productcategory/delete", {data:{id:id}}).then((res)=>{
       load();
     })
   }
@@ -58,7 +58,7 @@ const Categories = () => {
                 </td>
                 <td>{data.srno}</td>             
                 <td>{data.name}</td>
-                <td><img src={ "https://react-ecomm-mern.herokuapp.com/" + data.imagepath} style={{height:'70px'}} /></td>
+                <td><img src={ "https://node-gaurav-ecommerce.onrender.com/" + data.imagepath} style={{height:'70px'}} /></td>
               </tr>
               </>
             )

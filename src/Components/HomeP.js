@@ -24,7 +24,7 @@ const HomeP = (props) => {
 	)
 
 	useEffect(() => {
-		axios.post("https://react-ecomm-mern.herokuapp.com/productcategory/list", { data: { pcid: "" } }).then((res) => {
+		axios.post("https://node-gaurav-ecommerce.onrender.com/productcategory/list", { data: { pcid: "" } }).then((res) => {
 			setData(res.data.data);
 		})
 	}, [])
@@ -49,7 +49,7 @@ const HomeP = (props) => {
 									<div className="col-lg-6 py-2 text-center" >
 										<div className="product-entry border " >
 											<Link to={"/products/"+e._id} href=""  className="prod-img">
-												<img src={"https://react-ecomm-mern.herokuapp.com/" + e.imagepath} className="img-fluid" alt="Free html5 bootstrap 4 template" />
+												<img src={"https://node-gaurav-ecommerce.onrender.com/" + e.imagepath} className="img-fluid" alt="Free html5 bootstrap 4 template" />
 											</Link>
 											<div className="desc">
 												<h2><a href="">{e.name}</a></h2>

@@ -10,7 +10,7 @@ const Cart = () => {
   let [cartemtpy, setcartEmpty] = useState(false);
 
   useEffect(() => {
-    axios.post("https://react-ecomm-mern.herokuapp.com/product/list", { data: { pcid: '' } }).then((res) => {
+    axios.post("https://node-gaurav-ecommerce.onrender.com/product/list", { data: { pcid: '' } }).then((res) => {
       let products = new Array();
       let count = 1;
       let localProducts = new Array();
@@ -186,7 +186,7 @@ const Cart = () => {
                           </div>
                           <div className="one-eight text-center">
                             <div className="display-tc">
-                            <img src={ "https://react-ecomm-mern.herokuapp.com/" + product.imagepath} style={{height:'70px'}} />     </div>
+                            <img src={ "https://node-gaurav-ecommerce.onrender.com/" + product.imagepath} style={{height:'70px'}} />     </div>
                           </div>
                           <div className="one-eight text-center">
                             <div className="display-tc">

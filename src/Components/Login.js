@@ -3,6 +3,7 @@ import '../css/login.css';
 import Login1 from '../images/login.jpg';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { Tooltip } from '@mui/material';
 
 const Login = () => {
   let navigate = useNavigate();
@@ -19,7 +20,7 @@ const Login = () => {
   }
   function submit(e){
     e.preventDefault();
-    axios.post("https://react-ecomm-mern.herokuapp.com/admin/login",{data:{
+    axios.post("https://node-gaurav-ecommerce.onrender.com/admin/login",{data:{
       username : data.username,
       password : data.password}
     }).then(res => {
@@ -53,11 +54,15 @@ const Login = () => {
             <form action="#!">
               <div className="form-group">
                 <label htmlFor="email">Username</label>
-                <input type="email" name="username" value={data.username} onChange={(e)=>handle(e)} id="username" className="form-control" placeholder="email@example.com"/>
+              <Tooltip title="username : admin">
+                <input  type="email" name="username" value={data.username} onChange={(e)=>handle(e)} id="username" className="form-control" placeholder="email@example.com"/>
+              </Tooltip>
               </div>
               <div className="form-group mb-4">
                 <label htmlFor="password">Password</label>
+                <Tooltip title="password : admin">
                 <input type="password" name="password" value={data.password} onChange={(e)=>handle(e)} id="password" className="form-control" placeholder="enter your passsword"/>
+                </Tooltip>
               </div>
               <button name="login" id="login" onClick={(e)=>submit(e)} style={{backgroundColor:'#88c8bc'}} className="btn btn-block " type="button" value="Login">Login</button>
             </form>

@@ -53,7 +53,7 @@ function App() {
       <Route path='ordersuccess' element={<SuccesOrder/>}/>
 
       
-      <Route path='login' element={<Login/>}/> 
+      <Route path='/login' element={<Login/>}/> 
       <Route path='administrator/' element={<Administrator/>}>
         <Route path='/administrator/dashboard' element={<Dashboard/>}/>
         <Route path='/administrator/categories' element={<Categories/>}/>

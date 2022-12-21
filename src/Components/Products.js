@@ -7,7 +7,7 @@ const Categories = () => {
   let [datas, setData] = useState([]);
 
   function load(){
-    axios.post("https://react-ecomm-mern.herokuapp.com/product/list", {data:{pcid:""}}).then((res)=>{
+    axios.post("https://node-gaurav-ecommerce.onrender.com/product/list", {data:{pcid:""}}).then((res)=>{
       setData(res.data.data);
     })
   }
@@ -25,7 +25,7 @@ const Categories = () => {
 
   function deleteproduct(e, id){
     e.preventDefault();
-    axios.post("https://react-ecomm-mern.herokuapp.com/product/delete", {data:{id:id}}).then((res)=>{
+    axios.post("https://node-gaurav-ecommerce.onrender.com/product/delete", {data:{id:id}}).then((res)=>{
       load();
     })
   }
@@ -61,11 +61,11 @@ const Categories = () => {
                 </td>
                 <td>{data._id}</td>             
                 <td>{data.name}</td>
-                <td><img src={ "https://react-ecomm-mern.herokuapp.com/" +data.imagepath} style={{ height:'80px' }} /></td>
+                <td><img src={ "https://node-gaurav-ecommerce.onrender.com/" +data.imagepath} style={{ height:'80px' }} /></td>
                 <td>
                   <Link className='btn btn-warning' to={"/administrator/product/varieties/" + data._id }>{data.varieties.length}</Link>
                 </td>
-                {/* <td><img src={ "https://react-ecomm-mern.herokuapp.com/" + data.imagepath} style={{height:'70px'}} /></td> */}
+                {/* <td><img src={ "https://node-gaurav-ecommerce.onrender.com/" + data.imagepath} style={{height:'70px'}} /></td> */}
               </tr>
               </>
             )

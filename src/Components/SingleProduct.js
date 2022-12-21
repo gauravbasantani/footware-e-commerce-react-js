@@ -127,7 +127,7 @@ const SingleProduct = () => {
     
 
     useEffect(() => {
-        axios.post("https://react-ecomm-mern.herokuapp.com/product/get", { data: { id: productid } }).then((res) => {
+        axios.post("https://node-gaurav-ecommerce.onrender.com/product/get", { data: { id: productid } }).then((res) => {
             setProduct(res.data.data);
             setPrice(res.data.data.price);
             setMRP(res.data.data.mrp);
@@ -169,7 +169,7 @@ pauseOnHover
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="images p-3">
-                                        <div className="text-center p-4"> <img id="main-image" src={"https://react-ecomm-mern.herokuapp.com/" + product.imagepath} width="250" /> </div>
+                                        <div className="text-center p-4"> <img id="main-image" src={"https://node-gaurav-ecommerce.onrender.com/" + product.imagepath} width="250" /> </div>
 
                                     </div>
                                 </div>
